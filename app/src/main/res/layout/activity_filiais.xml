@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.guga.avaliamobile.FiliaisActivity">
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="FILIAIS"
+        android:textSize="36sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:text="Localize a Filial mais proxima"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/spEstado"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:id="@+id/spCidade"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/spEstado"
+        android:layout_alignStart="@+id/spEstado" />
+
+    <TextView
+        android:id="@+id/txEndereco"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/spCidade"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="62dp"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+
+</RelativeLayout>

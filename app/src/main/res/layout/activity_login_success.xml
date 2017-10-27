@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <View
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:alpha="0.4"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Seja Bem Vindo,"
+        android:gravity="center_horizontal"
+        android:id="@+id/txt_success_name"
+        android:layout_marginTop="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+             android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:gravity="center_horizontal"
+        android:id="@+id/txt_success_email"
+        android:layout_below="@+id/txt_success_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btAvaliar"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="105dp"
+        android:text="Avaliar"
+        android:layout_below="@+id/txt_success_email"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/background_button"/>
+
+    <Button
+        android:id="@+id/btFiliais"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Filiais"
+        android:layout_alignBaseline="@+id/btAvaliar"
+        android:layout_alignBottom="@+id/btAvaliar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="27dp"
+        android:background="@drawable/background_button"/>
+
+
+</RelativeLayout>

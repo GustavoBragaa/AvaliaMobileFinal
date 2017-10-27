@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cidades_Pr_array">
+        <item>Selecione Uma Cidade</item>
+        <item>Curitiba</item>
+        <item>Pinhais</item>
+        <item>São Jose dos Pinhais</item>
+    </string-array>
+    <string-array name="cidades_Sp_array">
+        <item>Selecione Uma Cidade</item>
+        <item>São Paulo</item>
+        <item>Guarulhos</item>
+    </string-array>
+    <string-array name="selecione_array">
+        <item>Primeiro Selecione um Estado</item>
+    </string-array>
+</resources>
