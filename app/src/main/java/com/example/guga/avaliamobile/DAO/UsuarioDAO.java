@@ -1,49 +1,34 @@
 package com.example.guga.avaliamobile.DAO;
 
-import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.guga.avaliamobile.Util.BancoUsuarios;
+
 /**
- * Created by Guga on 09/10/2017.
+ * Created by Guga on 30/10/2017.
  */
 
-public class UsuarioDAO extends SQLiteOpenHelper {
+public class UsuarioDAO {
+    public static final int LIVROS_TOTAL = 1;
+    private SQLiteDatabase db;
+    private BancoUsuarios bancoUsuarios;
+    SQLiteOpenHelper   dbHelper;
 
-    //Declarando nome da Base de dados e versão
-    private static final String DATABASE_NAME = "info.db";
-    private static final int DATABASE_VERSION = 3;
-    // Declarando nome dos campos que utilizaremos
-    public static final String TABELA_NOME = "tbl_usuarios";
-    public static final String COLUNA_ID = "id";
-    public static final String COLUNA_NOME = "nome";
-    public static final String COLUNA_EMAIL = "email";
-    public static final String COLUNA_SENHA = "senha";
+    public Cursor carregaDados() {
+        Cursor cursor;
+        String[] campos = {BancoUsuarios.COLUNA_ID, BancoUsuarios.COLUNA_NOME, BancoUsuarios.COLUNA_EMAIL, BancoUsuarios.COLUNA_SENHA, };
+      //  dbHelper = new UsuarioFactory(this);
 
-    //Criando tabela com campos e tipos
-    private static final String CREATE_TABLE_QUERY =
-            "CREATE TABLE " + TABELA_NOME + " ( " + COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-                    COLUNA_NOME + " TEXT NOT NULL, " +
-                    COLUNA_EMAIL + " TEXT NOT NULL, " +
-                    COLUNA_SENHA + " TEXT NOT NULL" + ")";
-
-
-    public UsuarioDAO(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        cursor = db.query(BancoUsuarios.TABELA_NOME, campos, null, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
     }
 
-    //Metodo que ira executar e criar o banco
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(CREATE_TABLE_QUERY);
 
-    }
-
-    //Verificadno se existe uma nova versão, se houver exclui e cria o banco de dados novamente
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABELA_NOME);
-        onCreate(sqLiteDatabase);
-
-    }
 }

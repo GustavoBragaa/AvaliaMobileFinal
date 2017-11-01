@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.guga.avaliamobile.FiliaisActivity">
+    tools:context="com.example.guga.avaliamobile.Activitys.FiliaisActivity">
 
 
     <TextView
@@ -52,7 +52,8 @@
         android:layout_marginTop="62dp"
         android:text=""
         android:textSize="20sp"
-        android:textStyle="bold|italic" />
+        android:textStyle="italic"
+        />
 
 
-</RelativeLayout>
+ </RelativeLayout>

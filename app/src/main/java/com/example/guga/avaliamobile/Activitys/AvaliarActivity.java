@@ -1,7 +1,9 @@
-package com.example.guga.avaliamobile;
+package com.example.guga.avaliamobile.Activitys;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.guga.avaliamobile.R;
 
 public class AvaliarActivity extends AppCompatActivity {
 

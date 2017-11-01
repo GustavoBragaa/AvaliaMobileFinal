@@ -1,4 +1,4 @@
-package com.example.guga.avaliamobile;
+package com.example.guga.avaliamobile.Activitys;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -13,7 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.guga.avaliamobile.DAO.UsuarioDAO;
+import com.example.guga.avaliamobile.Factory.UsuarioFactory;
+import com.example.guga.avaliamobile.R;
+import com.example.guga.avaliamobile.Util.BancoUsuarios;
 
 public class CadastrarActivity extends AppCompatActivity {
     SQLiteOpenHelper openHelper;
@@ -27,7 +29,7 @@ public class CadastrarActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.hide();
 
-        openHelper = new UsuarioDAO(this);
+        openHelper = new UsuarioFactory(this);
         //Recebendo Id's
         final EditText txtNome = (EditText) findViewById(R.id.cadastrar_edt_nome);
         final EditText txtEmail = (EditText) findViewById(R.id.cadastrar_edt_email);
@@ -39,7 +41,7 @@ public class CadastrarActivity extends AppCompatActivity {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db = openHelper.getWritableDatabase();
+
 
                 //Passando os dados informados para String
                 String nome = txtNome.getText().toString();
@@ -109,15 +111,19 @@ public class CadastrarActivity extends AppCompatActivity {
         });
     }
 
+
     // Metodo que ira pegar os dados inseridos e mandar para o banco
     public void insereUsuario(String nome, String email, String senha) {
+        db = openHelper.getWritableDatabase();
+
         ContentValues values = new ContentValues();
-        values.put(UsuarioDAO.COLUNA_NOME, nome);
-        values.put(UsuarioDAO.COLUNA_EMAIL, email);
-        values.put(UsuarioDAO.COLUNA_SENHA, senha);
-        long id = db.insert(UsuarioDAO.TABELA_NOME, null, values);
+        values.put(BancoUsuarios.COLUNA_NOME, nome);
+        values.put(BancoUsuarios.COLUNA_EMAIL, email);
+        values.put(BancoUsuarios.COLUNA_SENHA, senha);
+        long id = db.insert(BancoUsuarios.TABELA_NOME, null, values);
 
     }
+
 
 }
 

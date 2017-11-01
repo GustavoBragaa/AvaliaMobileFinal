@@ -9,18 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activitys.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginSuccessActivity" />
-        <activity android:name=".CadastrarActivity" />
-        <activity android:name=".SelecionarAparelhoActivity" />
-        <activity android:name=".FiliaisActivity" />
-        <activity android:name=".AvaliarActivity" />
+        <activity android:name=".Activitys.LoginSuccessActivity" />
+        <activity android:name=".Activitys.CadastrarActivity" />
+        <activity android:name=".Activitys.SelecionarAparelhoActivity" />
+        <activity android:name=".Activitys.FiliaisActivity" />
+        <activity android:name=".Activitys.AvaliarActivity" />
     </application>
 
 </manifest>

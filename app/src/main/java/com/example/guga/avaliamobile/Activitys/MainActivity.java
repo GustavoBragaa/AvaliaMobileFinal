@@ -1,11 +1,10 @@
-package com.example.guga.avaliamobile;
+package com.example.guga.avaliamobile.Activitys;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.preference.DialogPreference;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +15,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.guga.avaliamobile.DAO.UsuarioDAO;
-import com.example.guga.avaliamobile.Model.UsuarioModel;
+import com.example.guga.avaliamobile.Factory.UsuarioFactory;
+import com.example.guga.avaliamobile.DAO.Usuario;
+import com.example.guga.avaliamobile.R;
+import com.example.guga.avaliamobile.Util.BancoUsuarios;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         txtCadastrar = (TextView) findViewById(R.id.main_txt_cadastrar);
         btnEntrar = (Button) findViewById(R.id.main_btn_entrar);
 
-        dbHelper = new UsuarioDAO(this);
+        dbHelper = new UsuarioFactory(this);
         db = dbHelper.getWritableDatabase();
-        final UsuarioModel usuario = new UsuarioModel();
+        final Usuario usuario = new Usuario();
 
         //Função do botão Entrar
         btnEntrar.setOnClickListener(new View.OnClickListener() {
@@ -59,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
                     usuario.setSenha(txtSenha.getText().toString());
 
                     //Pegando cursosr para buscar dados no banco de dados
-                    cursor = db.rawQuery("SELECT *FROM " + UsuarioDAO.TABELA_NOME + " WHERE " +
-                                    UsuarioDAO.COLUNA_EMAIL + "=? AND " +
-                                    UsuarioDAO.COLUNA_SENHA + "=?",
+                    cursor = db.rawQuery("SELECT *FROM " + BancoUsuarios.TABELA_NOME + " WHERE " +
+                                    BancoUsuarios.COLUNA_EMAIL + "=? AND " +
+                                    BancoUsuarios.COLUNA_SENHA + "=?",
                             new String[]{usuario.getEmail(), usuario.getSenha()});
                     if (cursor != null) {
                         if (cursor.getCount() > 0) {
@@ -69,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
                             cursor.moveToFirst();
 
                             //Se encontrar os dados informados pelo usuario, colocar dentro das variaveis em string
-                            String intentnome = cursor.getString(cursor.getColumnIndex(UsuarioDAO.COLUNA_NOME));
-                            String intentemail = cursor.getString(cursor.getColumnIndex(UsuarioDAO.COLUNA_EMAIL));
+                            String intentnome = cursor.getString(cursor.getColumnIndex(BancoUsuarios.COLUNA_NOME));
+                            String intentemail = cursor.getString(cursor.getColumnIndex(BancoUsuarios.COLUNA_EMAIL));
 
                             //Mostrar mensagem
                             Toast.makeText(MainActivity.this, "Ola!", Toast.LENGTH_SHORT).show();
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
                 {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setTitle("ERRO Banco de Dados");
+                    builder.setTitle("ERRO BancoUsuarios de Dados");
                     builder.setMessage("Falha ao consultar registros");
 
                     AlertDialog dialog = builder.create();

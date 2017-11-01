@@ -1,4 +1,4 @@
-package com.example.guga.avaliamobile.Model;
+package com.example.guga.avaliamobile.DAO;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Guga on 09/10/2017.
  */
 //Declarando Atributos que utilizaremos
-public class UsuarioModel implements Serializable {
+public class Usuario implements Serializable {
     private Long id;
     private String usuario;
     private String email;
