@@ -66,16 +66,10 @@ public class SelecionarAparelhoActivity extends AppCompatActivity {
                 // Item da spinner selecionado
                 String itemSelecionado = (String) parent.getItemAtPosition(position);
 
-
-
-
+                //Se a posição for aior que zero
                 if (position > 0) {
 
                     String retorna = AvaliacoesDAO.BuscasValor(itemSelecionado);
-
-                    // Instanciando novo objteo
-                    Avaliacoes avaliacoes = new Avaliacoes();
-
 
                     // Chamando a mensagem
                     mensagem(parent, itemSelecionado);
@@ -98,21 +92,12 @@ public class SelecionarAparelhoActivity extends AppCompatActivity {
 
     }
 
+    // Mensagem
     public void mensagem(AdapterView<?> parent, String itemSelecionado) {
         Toast.makeText(parent.getContext(), "Você selecionou:  " + itemSelecionado,
                 Toast.LENGTH_LONG).show();
     }
 }
-
-//Button btComecar = (Button) findViewById(R.id.btComecar);
-//       btComecar.setOnClickListener(new View.OnClickListener() {
-//@Override
-//public void onClick(View view) {
-//     Intent ChamaAvaliar = new Intent(SelecionarAparelhoActivity.this, AvaliarActivity.class);
-
-//   startActivity(ChamaAvaliar);
-// }
-//});
 
 
 

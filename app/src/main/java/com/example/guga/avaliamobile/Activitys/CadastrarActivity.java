@@ -80,6 +80,7 @@ public class CadastrarActivity extends AppCompatActivity {
                     if (resultado > 0) {
                         //Caixa de Mensagem
                         final AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarActivity.this);
+                        builder.setCancelable(false);
                         builder.setTitle("Parabens!");
                         builder.setMessage("Seu novo Usuario foi cadastrado com sucesso!!!");
                         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -94,8 +95,9 @@ public class CadastrarActivity extends AppCompatActivity {
 
                     } else {
                         final AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarActivity.this);
+                        builder.setCancelable(false);
                         builder.setTitle("Erro!");
-                        builder.setMessage("Não foi possivel cadastrar seu Usuario.");
+                        builder.setMessage("Não foi possivel cadastrar seu Usuario, tente novamente.");
                         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {

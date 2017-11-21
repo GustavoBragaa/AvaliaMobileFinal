@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             //Mensagem de erro ao não encontrar dados informados pelo cliente
                             final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                            builder.setCancelable(false);
                             builder.setTitle("Alerta");
                             builder.setMessage("Nome de Usuario ou senha esta incorreto");
                             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -111,23 +112,32 @@ public class MainActivity extends AppCompatActivity {
                     }
 
 
-                } catch (Exception error)
+                    } catch (Exception error)
 
-                {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setTitle("ERRO BancoUsuarios de Dados");
-                    builder.setMessage("Falha ao consultar registros");
+                    { //Mensagem de Erro da Exception
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setCancelable(false);
+                        builder.setTitle("ERRO ");
+                        builder.setMessage("Falha ao consultar registros");
+                        builder.setPositiveButton("OK!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        });
 
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
 
-                } finally
 
-                {
-                    db.close();
+                    } finally
+
+                    {
+                        db.close();
+                    }
                 }
-            }
-        });
+            });
 
         //Text View que chama activity de cadastro
         txtCadastrar.setOnClickListener(new View.OnClickListener()
