@@ -55,17 +55,6 @@ public class AvaliarActivity extends AppCompatActivity {
                 rbDesga = (RadioButton) findViewById(R.id.rbDesga);
 
 
-                rbSim.setChecked(boolean checked);
-                rbNao.setChecked (boolean rbNao1);
-                rbPer.setChecked (boolean rbPer1);
-                rbRisc.setChecked (boolean rbRisc1);
-                rbTrinc.setChecked (boolean rbTrinc1);
-                rbPerf.setChecked (boolean rbPerf1);
-                rbAmass.setChecked (boolean rbAmass1);
-                rbDesga.setChecked (boolean rbDesga1);
-
-
-
                 //calculando a variavel
                 if (rbSim.isChecked() || rbPer.isChecked() || rbPerf.isChecked()) {
                     x4 = numero;
@@ -73,7 +62,7 @@ public class AvaliarActivity extends AppCompatActivity {
                 }
 
 
-                if (rbNao.isChecked();) {
+                if (rbNao.isChecked()) {
                     x1 = numero / 100 * 10;
                 }
 
@@ -118,7 +107,7 @@ public class AvaliarActivity extends AppCompatActivity {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(AvaliarActivity.this);
                 builder.setCancelable(false);
                 builder.setTitle("Avaliação Finalizada");
-                builder.setMessage("O Valor de seu aparelho é:  " + x4);
+                builder.setMessage("O Valor de seu aparelho é:  R$" + x4 + ",00");
                 builder.setPositiveButton("Aceitar", new DialogInterface.OnClickListener() {
 
                     // Se Aceitar Chama Activity Filiais
