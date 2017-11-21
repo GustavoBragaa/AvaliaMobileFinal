@@ -26,8 +26,8 @@ public class AvaliacoesFactory extends SQLiteOpenHelper {
                 BancoAvaliacoes.COLUNA_VALOR + " INTEGER NOT NULL)";
         sqLiteDatabase.execSQL(cria_sql_modelo);
 
-
-        String Insere_modelo = "insert into " + BancoAvaliacoes.TABELA_NOME + " ( " + BancoAvaliacoes.COLUNA_MODELO + "," + BancoAvaliacoes.COLUNA_VALOR + " ) values ('Samsung Galaxy Note 8', 4500 ) ";
+        String Insere_Selecione_Aqui = "insert into " + BancoAvaliacoes.TABELA_NOME + " ( " + BancoAvaliacoes.COLUNA_MODELO + "," + BancoAvaliacoes.COLUNA_VALOR + " ) values ('Selecione Aqui!', 0 ) ";
+        String Insere_Note8 = "insert into " + BancoAvaliacoes.TABELA_NOME + " ( " + BancoAvaliacoes.COLUNA_MODELO + "," + BancoAvaliacoes.COLUNA_VALOR + " ) values ('Samsung Galaxy Note 8', 4500 ) ";
         String Insere_S8_ = " insert into " + BancoAvaliacoes.TABELA_NOME + " ( " + BancoAvaliacoes.COLUNA_MODELO + "," + BancoAvaliacoes.COLUNA_VALOR + " ) values ('Samsung Galaxy S8', 3500 )";
         String Insere_S7 = " insert into " + BancoAvaliacoes.TABELA_NOME + " ( " + BancoAvaliacoes.COLUNA_MODELO + "," + BancoAvaliacoes.COLUNA_VALOR + " ) values ('Samsung Galaxy S7', 2000 )";
         String Insere_S7Edge = "insert into " + BancoAvaliacoes.TABELA_NOME + " ( " + BancoAvaliacoes.COLUNA_MODELO + "," + BancoAvaliacoes.COLUNA_VALOR + " ) values ('Samsung Galaxy S7 Edge', 2500 )";
@@ -47,7 +47,8 @@ public class AvaliacoesFactory extends SQLiteOpenHelper {
         String Insere_K10_2017 = "insert into " + BancoAvaliacoes.TABELA_NOME + " ( " + BancoAvaliacoes.COLUNA_MODELO + "," + BancoAvaliacoes.COLUNA_VALOR + " ) values ('LG K10 2017 ', 500 )";
         String Insere_K4_2017 = "insert into " + BancoAvaliacoes.TABELA_NOME + " ( " + BancoAvaliacoes.COLUNA_MODELO + "," + BancoAvaliacoes.COLUNA_VALOR + " ) values ('LG K4 2017 ', 350 )";
 
-        sqLiteDatabase.execSQL(Insere_modelo);
+        sqLiteDatabase.execSQL(Insere_Selecione_Aqui);
+        sqLiteDatabase.execSQL(Insere_Note8);
         sqLiteDatabase.execSQL(Insere_S8_);
         sqLiteDatabase.execSQL(Insere_S7);
         sqLiteDatabase.execSQL(Insere_S7Edge);

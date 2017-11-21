@@ -26,20 +26,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SelecionarAparelhoActivity extends AppCompatActivity {
-    String string;
+
+    AvaliacoesDAO AvaliacoesDAO = new AvaliacoesDAO(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selecionaaparelho);
         //Chamadno Metodo para popular Spinner
-        loadSpinnerData();
-
+        CarregaSpinner();
 
 
     }
 
-    private void loadSpinnerData() {
+    private void CarregaSpinner() {
         // Base de dados handler
         AvaliacoesDAO db = new AvaliacoesDAO(getApplicationContext());
 
@@ -47,11 +47,11 @@ public class SelecionarAparelhoActivity extends AppCompatActivity {
         Spinner spModelo = (Spinner) findViewById(R.id.spModelo);
 
         //colocando os valores pegos pelo meto e colocando na lista
-        List<String> lables = db.getAllLabels();
+        List<String> valores = db.ObterTodosOsValores();
 
         // Criando Adapter para spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, lables);
+                android.R.layout.simple_spinner_item, valores);
 
         // Layout padrão para spinner
         dataAdapter
@@ -59,29 +59,35 @@ public class SelecionarAparelhoActivity extends AppCompatActivity {
 
         // Acrescentando valores na adapter
         spModelo.setAdapter(dataAdapter);
+        // metodo para selecionar item da spinner
         spModelo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // Item da spinner selecionado
-                Avaliacoes avaliacoes = (Avaliacoes)parent.getItemAtPosition(position);
-                   Intent atualizarIntent = new Intent(SelecionarAparelhoActivity.this, AvaliarActivity.class);
-                    atualizarIntent.putExtra("COLUNA_VALOR", avaliacoes.getValor());
-                     startActivity(atualizarIntent);
+                String itemSelecionado = (String) parent.getItemAtPosition(position);
 
 
 
-                Button btComecar = (Button) findViewById(R.id.btComecar);
-                btComecar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent ChamaAvaliar = new Intent(SelecionarAparelhoActivity.this, AvaliarActivity.class);
-                        startActivity(ChamaAvaliar);
-                    }
-                });
+
+                if (position > 0) {
+
+                    String retorna = AvaliacoesDAO.BuscasValor(itemSelecionado);
+
+                    // Instanciando novo objteo
+                    Avaliacoes avaliacoes = new Avaliacoes();
 
 
-                    Toast.makeText(parent.getContext(), "Você selecionou:  " + string,
-                          Toast.LENGTH_LONG).show();
+                    // Chamando a mensagem
+                    mensagem(parent, itemSelecionado);
+                    // Criando nova intent
+                    Intent atualizarIntent = new Intent(SelecionarAparelhoActivity.this, AvaliarActivity.class);
+                    // Passando valor para a intent
+                    atualizarIntent.putExtra("valor", retorna);
+                    // Startando Intent
+                    startActivity(atualizarIntent);
+                }
+
+
             }
 
             @Override
@@ -91,10 +97,22 @@ public class SelecionarAparelhoActivity extends AppCompatActivity {
         });
 
     }
+
+    public void mensagem(AdapterView<?> parent, String itemSelecionado) {
+        Toast.makeText(parent.getContext(), "Você selecionou:  " + itemSelecionado,
+                Toast.LENGTH_LONG).show();
+    }
 }
 
+//Button btComecar = (Button) findViewById(R.id.btComecar);
+//       btComecar.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View view) {
+//     Intent ChamaAvaliar = new Intent(SelecionarAparelhoActivity.this, AvaliarActivity.class);
 
-
+//   startActivity(ChamaAvaliar);
+// }
+//});
 
 
 

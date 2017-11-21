@@ -36,7 +36,9 @@ public class LoginSuccessActivity extends AppCompatActivity {
         //Recebendo Id dos botões
         btAvaliar = (Button) findViewById(R.id.btAvaliar);
         btFiliais = (Button) findViewById(R.id.btFiliais);
+
         //Chamando activity
+
         btAvaliar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

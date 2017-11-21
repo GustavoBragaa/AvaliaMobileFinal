@@ -9,56 +9,57 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000000"
-        android:alpha="0.4"
-        android:layout_alignParentTop="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Seja Bem Vindo,"
-        android:gravity="center_horizontal"
-        android:id="@+id/txt_success_name"
-        android:layout_marginTop="200dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:alpha="0.4"
+        android:background="#000000" />
 
     <TextView
+        android:id="@+id/txt_success_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-             android:textColor="#ffffff"
-        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
         android:gravity="center_horizontal"
+        android:text="Seja Bem Vindo,"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+    <TextView
         android:id="@+id/txt_success_email"
-        android:layout_below="@+id/txt_success_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txt_success_name"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btAvaliar"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txt_success_email"
         android:layout_marginStart="27dp"
         android:layout_marginTop="105dp"
-        android:text="Avaliar"
-        android:layout_below="@+id/txt_success_email"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/background_button"/>
+        android:background="@drawable/background_button"
+        android:text="Avaliar" />
 
     <Button
         android:id="@+id/btFiliais"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Filiais"
         android:layout_alignBaseline="@+id/btAvaliar"
         android:layout_alignBottom="@+id/btAvaliar"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="27dp"
-        android:background="@drawable/background_button"/>
+        android:background="@drawable/background_button"
+        android:text="Filiais" />
+
 
 
 </RelativeLayout>

@@ -1,41 +1,32 @@
 package com.example.guga.avaliamobile.Activitys;
 
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.guga.avaliamobile.Factory.UsuarioFactory;
+import com.example.guga.avaliamobile.DAO.UsuarioDAO;
 import com.example.guga.avaliamobile.R;
-import com.example.guga.avaliamobile.Util.BancoUsuarios;
 
 public class CadastrarActivity extends AppCompatActivity {
-    SQLiteOpenHelper openHelper;
-    SQLiteDatabase db;
+    UsuarioDAO UsuarioDAO = new UsuarioDAO(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
 
-        ActionBar ab = getSupportActionBar();
-        ab.hide();
 
-        openHelper = new UsuarioFactory(this);
         //Recebendo Id's
         final EditText txtNome = (EditText) findViewById(R.id.cadastrar_edt_nome);
         final EditText txtEmail = (EditText) findViewById(R.id.cadastrar_edt_email);
         final EditText txtSenha = (EditText) findViewById(R.id.cadastrar_edt_password);
-        Button btnCadastrar = (Button) findViewById(R.id.cadastrar_btn_cadastrar);
-        Button btnCancelar = (Button) findViewById(R.id.cadastrar_btn_cancelar);
+        final Button btnCadastrar = (Button) findViewById(R.id.cadastrar_btn_cadastrar);
+        final Button btnCancelar = (Button) findViewById(R.id.cadastrar_btn_cancelar);
 
         //Função do botão Cagastrar
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +41,8 @@ public class CadastrarActivity extends AppCompatActivity {
 
                 //Validando se a senha inserida não está em branco
                 if (senha.isEmpty() || senha.equals(" ".trim())) {
+
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarActivity.this);
                     builder.setTitle("ERRO!");
                     builder.setMessage("Senha esta em branco, por favor reveja.");
@@ -82,49 +75,53 @@ public class CadastrarActivity extends AppCompatActivity {
                 }
                 // Verificando se todos os campos são diferentes de nullo, e acrescentando ao banco
                 if (!nome.isEmpty() && !email.isEmpty() && !senha.isEmpty()) {
-                    insereUsuario(nome, email, senha);
+                    long resultado = UsuarioDAO.insereUsuario(nome, email, senha);
 
+                    if (resultado > 0) {
+                        //Caixa de Mensagem
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarActivity.this);
+                        builder.setTitle("Parabens!");
+                        builder.setMessage("Seu novo Usuario foi cadastrado com sucesso!!!");
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                            }
+                        });
 
-                    //Caixa de Mensagem
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarActivity.this);
-                    builder.setTitle("Parabens!");
-                    builder.setMessage("Seu novo Usuario foi cadastrado com sucesso!!!");
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            finish();
-                        }
-                    });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
 
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                    } else {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(CadastrarActivity.this);
+                        builder.setTitle("Erro!");
+                        builder.setMessage("Não foi possivel cadastrar seu Usuario.");
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                            }
+                        });
+                    }
                 }
+
+                // Botão cancelar chama tela de login
+                btnCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(CadastrarActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+
             }
+
+
         });
-        // Botão cancelar chama tela de login
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CadastrarActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-
-    // Metodo que ira pegar os dados inseridos e mandar para o banco
-    public void insereUsuario(String nome, String email, String senha) {
-        db = openHelper.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(BancoUsuarios.COLUNA_NOME, nome);
-        values.put(BancoUsuarios.COLUNA_EMAIL, email);
-        values.put(BancoUsuarios.COLUNA_SENHA, senha);
-        long id = db.insert(BancoUsuarios.TABELA_NOME, null, values);
 
     }
 
 
 }
-
 

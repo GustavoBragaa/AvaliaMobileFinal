@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.guga.avaliamobile.DAO.AvaliacoesDAO;
 import com.example.guga.avaliamobile.Factory.UsuarioFactory;
 import com.example.guga.avaliamobile.DAO.Usuario;
 import com.example.guga.avaliamobile.R;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     SQLiteOpenHelper dbHelper;
     SQLiteDatabase db;
     Cursor cursor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                                     BancoUsuarios.COLUNA_EMAIL + "=? AND " +
                                     BancoUsuarios.COLUNA_SENHA + "=?",
                             new String[]{usuario.getEmail(), usuario.getSenha()});
+
+
                     if (cursor != null) {
                         if (cursor.getCount() > 0) {
 
