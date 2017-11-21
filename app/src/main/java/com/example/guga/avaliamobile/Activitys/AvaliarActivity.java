@@ -73,7 +73,7 @@ public class AvaliarActivity extends AppCompatActivity {
                 }
 
 
-                if (rbNao.isSelected()) {
+                if (rbNao.isChecked();) {
                     x1 = numero / 100 * 10;
                 }
 
