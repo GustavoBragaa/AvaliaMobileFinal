@@ -21,11 +21,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="17dp"
         android:text="Localize a Filial mais proxima"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginStart="12dp"
+        android:layout_below="@+id/textView5"
+        android:layout_alignStart="@+id/textView5" />
 
     <Spinner
         android:id="@+id/spEstado"
@@ -51,9 +52,17 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="62dp"
         android:text=""
-        android:textSize="20sp"
-        android:textStyle="italic"
-        />
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="290dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="29dp"
+        android:text="Venha Até uma de nossas Lojas"
+        android:textSize="18sp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
 
 
- </RelativeLayout>
+</RelativeLayout>

@@ -1,10 +1,12 @@
 package com.example.guga.avaliamobile.Activitys;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -97,6 +99,8 @@ public class SelecionarAparelhoActivity extends AppCompatActivity {
         Toast.makeText(parent.getContext(), "Você selecionou:  " + itemSelecionado,
                 Toast.LENGTH_LONG).show();
     }
+
+
 }
 
 

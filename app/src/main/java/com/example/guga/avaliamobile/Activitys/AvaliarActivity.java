@@ -55,42 +55,26 @@ public class AvaliarActivity extends AppCompatActivity {
                 rbDesga = (RadioButton) findViewById(R.id.rbDesga);
 
 
-                //calculando a variavel
-                if (rbSim.isChecked() || rbPer.isChecked() || rbPerf.isChecked()) {
-                    x4 = numero;
+                //calculando  variaveis
 
+                if (rbSim.isChecked()) {
+                    x1 = numero / 100 * 20;
                 }
 
 
-                if (rbNao.isChecked()) {
-                    x1 = numero / 100 * 10;
-                }
-
-
-                //  if (rbSim.no) {
-                //      final AlertDialog.Builder builder = new AlertDialog.Builder(AvaliarActivity.this);
-                //      builder.setTitle("ERRO!");
-                //      builder.setMessage("O Valor de seu aparelho é:  " + x4);
-
-                //       AlertDialog dialog = builder.create();
-                //       dialog.show();
-
-                //    }
-
-
-                if (rbPer.isChecked() || x1 != numero) {
-                    x2 = numero / 100 * 70;
+                if (rbPer.isChecked()) {
+                    x2 = numero / 100 * 40;
                 }
 
 
                 if (rbRisc.isChecked()) {
-                    x2 = numero / 100 * 50;
+                    x2 = numero / 100 * 30;
                 }
                 if (rbTrinc.isChecked()) {
-                    x2 = numero / 100 * 40;
+                    x2 = numero / 100 * 20;
                 }
-                if (rbPerf.isChecked() || x1 != numero)
-                    x3 = numero / 100 * 30;
+                if (rbPerf.isChecked())
+                    x3 = numero / 100 * 40;
 
                 if (rbAmass.isChecked()) {
                     x3 = numero / 100 * 20;
@@ -99,43 +83,98 @@ public class AvaliarActivity extends AppCompatActivity {
                     x3 = numero / 100 * 10;
                 }
 
+                if (rbSim.isChecked() && rbPer.isChecked() && rbPerf.isChecked()) {
+                    x4 = numero;
+
+                }
+
                 //Somando valores e colocando dentro de outra variavel
                 x4 = x1 + x2 + x3;
 
+                if (rbNao.isChecked()) {
+                    x4 = 20;
+                }
+                if (x4 > numero) {
+                    x4 = 0 + numero;
+                }
+
                 //Mensagem com o valor dado ao aparelho
+                if (rbSim.isChecked() | rbNao.isChecked() && rbPer.isChecked() | rbRisc.isChecked() | rbTrinc.isChecked() && rbPerf.isChecked() | rbAmass.isChecked() | rbDesga.isChecked()) {
+                    //Mensagem com o valor do aparelho
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(AvaliarActivity.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("Avaliação Finalizada");
+                    builder.setMessage("O Valor do aparelho " +
+                            "é: R$" + x4 + ",00"
 
-                final AlertDialog.Builder builder = new AlertDialog.Builder(AvaliarActivity.this);
-                builder.setCancelable(false);
-                builder.setTitle("Avaliação Finalizada");
-                builder.setMessage("O Valor de seu aparelho é:  R$" + x4 + ",00");
-                builder.setPositiveButton("Aceitar", new DialogInterface.OnClickListener() {
 
-                    // Se Aceitar Chama Activity Filiais
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    );
+                    builder.setPositiveButton("Aceitar", new DialogInterface.OnClickListener() {
 
-                        Intent ChamaFiliais = new Intent(AvaliarActivity.this, FiliaisActivity.class);
-                        startActivity(ChamaFiliais);
+                        // Se Aceitar Chama Activity Filiais
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
+                            Intent ChamaFiliais = new Intent(AvaliarActivity.this, FiliaisActivity.class);
+                            startActivity(ChamaFiliais);
+
+
+                        }
+                    });
+
+                    builder.setNegativeButton("Sair", new DialogInterface.OnClickListener() {
+                        // Se recusar Chama Activity Motivo
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                } else {
+                    if (!rbSim.isChecked() && !rbNao.isChecked()) {
+
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(AvaliarActivity.this);
+                        builder.setTitle("ERRO!");
+                        builder.setMessage("Por favor, selecione um item na Primeira pergunta");
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
 
                     }
-                });
 
-                builder.setNegativeButton("Recusar", new DialogInterface.OnClickListener() {
-                    // Se recusar Chama Activity Motivo
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    if (!rbPer.isChecked() && !rbRisc.isChecked() && !rbTrinc.isChecked()) {
 
-                        Intent ChamaTelaMotivo = new Intent(AvaliarActivity.this, FiliaisActivity.class);
-                        startActivity(ChamaTelaMotivo);
 
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(AvaliarActivity.this);
+                        builder.setTitle("ERRO!");
+                        builder.setMessage("Por favor, selecione um item na Segunda pergunta");
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
 
                     }
-                });
 
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                    if (!rbPerf.isChecked() && !rbAmass.isChecked() && !rbDesga.isChecked()) {
 
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(AvaliarActivity.this);
+                        builder.setTitle("ERRO!");
+                        builder.setMessage("Por favor, selecione um item na Terceira pergunta");
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+                    }
+                }
             }
 
 
